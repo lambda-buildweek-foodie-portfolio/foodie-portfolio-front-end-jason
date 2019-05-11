@@ -23,6 +23,7 @@ const HeaderH1 = styled.h1`
   text-align: center;
   color: #000;
   cursor: pointer;
+  margin-right: 7%;
 `;
 
 const HeaderSpans = styled.span`
@@ -46,7 +47,7 @@ const HeaderSpans = styled.span`
             font-weight: bold;
             letter-spacing: 1px;
             text-align: right;
-            margin-right: 25px;
+            margin-right: 75px;
             flex: 1;
             `
                 : null

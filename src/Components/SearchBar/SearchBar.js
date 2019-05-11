@@ -2,7 +2,6 @@ import React from 'react';
 import './search.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const FontAwesome = require("react-fontawesome");
 
 const SearchBar = props =>{
     return(

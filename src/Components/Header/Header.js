@@ -6,8 +6,6 @@ import {
 } from '../Styling/styles'
 
 
-
-import { connect } from 'react-redux';
 import Moment from '../Moment/moment';
 
 class Header extends Component{
