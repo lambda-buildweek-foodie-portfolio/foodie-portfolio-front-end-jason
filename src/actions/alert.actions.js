@@ -1,4 +1,6 @@
-import { alertConstants } from '../constants';
+import { alertConstants } from '../constants/alertconstants'
+
+
 //  Wrapping acttion methods in object for easy importing , and better view of all actions available. 
 export const alertActions = {
     success,

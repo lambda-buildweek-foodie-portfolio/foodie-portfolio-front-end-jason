@@ -1,15 +1,15 @@
 // Contains redux action creators for actions realted to users/chefs.
 
-import {userConstants} from '../constants';
-import {userService} from '../servises';
-import {alertActions} from './';
-import {history} from '../helpers';
+import {userConstants} from '../constants/user.constants';
+import {userService} from '../services/user.services';
+import {alertActions} from '../actions/alert.actions';
+import {history} from '../helpers/history';
 
 
 export const userActions = {
     login,
     logout,
-    rgister,
+    register,
     getAll,
     delte: _delete
 };
