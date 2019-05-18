@@ -54,8 +54,8 @@ function register(user) {
                 dispatch(alertActions.success('Registration successful'));
             },
             error => {
-                dispatch(failure(error.tooString()));
-                dispatch(alertActions.error(error.tooString()));
+                dispatch(failure(error.toString()));
+                dispatch(alertActions.error(error.toString()));0
             }
         );
     };
@@ -72,7 +72,7 @@ function getAll() {
         userService.getAll()
             .then(
                 users => dispatch(success(users)),
-                error => dispatch(failure(error.tooString()))
+                error => dispatch(failure(error.toString()))
             );
     };
 
@@ -88,7 +88,7 @@ function _delete(id) {
         userService.delete(id)
             .then(
                 user => dispatch(success(id)),
-                error => dispatch(failure(id, error.tooString()))
+                error => dispatch(failure(id, error.toString()))
             );
     };
 

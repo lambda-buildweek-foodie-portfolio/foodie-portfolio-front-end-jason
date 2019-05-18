@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment from "./moment";
 import React, { Component } from 'react';
 
 export default class Moment extends Component {

@@ -6,7 +6,7 @@ import {
 } from '../Styling/styles'
 
 
-import Moment from '../Moment/moment';
+//import Moment from '../Moment/moment';
 
 class Header extends Component{
   state = {
@@ -24,7 +24,7 @@ homePageClick = () => {
     return (
       <div>
         <HeaderDiv>
-          <HeaderSpans date> <Moment/></HeaderSpans>
+          {/* <HeaderSpans date> <Moment/></HeaderSpans> */}
           <HeaderH1 >Foodie Portfollio</HeaderH1> 
          
           <HeaderSpans temp>80°</HeaderSpans>   

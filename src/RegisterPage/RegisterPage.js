@@ -18,7 +18,7 @@ class RegisterPage extends React.Component {
             },
             submitted: false
         };
-
+        // will change later into arrow functions without the need to bind 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -94,9 +94,10 @@ class RegisterPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { registering } = state.registration;
+    console.log(state)
+    const { registrationReducer } = state.registrationReducer;
     return {
-        registering
+        registrationReducer
     };
 }
 
