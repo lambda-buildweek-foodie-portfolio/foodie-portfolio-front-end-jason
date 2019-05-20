@@ -14,6 +14,7 @@ class HomePage extends React.Component {
     }
 
     render() {
+        console.log(this.props)
     
         const { user, users } = this.props;
         return (

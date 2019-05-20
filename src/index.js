@@ -1,21 +1,21 @@
 import React from 'react';
-import  render  from 'react-dom';
+import  ReactDOM  from 'react-dom';
 import { Provider } from 'react-redux';
-// import thunk from 'redux-thunk';
-// import logger from "redux-logger";
-// import {createStore, applyMiddleware} from 'redux'
-import {store} from '../src/helpers/store';
+ import thunk from 'redux-thunk';
+ import logger from "redux-logger";
+ import {createStore, applyMiddleware} from 'redux'
+
 import { App } from './App';
-import { configureFakeBackend } from './helpers/fake-backend';
-// import rootReducer from './reducers';
+//import { configureFakeBackend } from './helpers/fake-backend';
+    import {rootReducer} from '../src/reducers/index' 
 
 
 
-// const  store = createStore(rootReducer, applyMiddleware(logger, thunk));
+ const  store = createStore(rootReducer, applyMiddleware(logger, thunk));
 
-configureFakeBackend();
+//configureFakeBackend();
 
-render(
+ReactDOM.render(
     <Provider store={store}>
         <App />
     </Provider>,

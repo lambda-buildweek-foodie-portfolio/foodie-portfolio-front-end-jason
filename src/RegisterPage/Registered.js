@@ -1,11 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, {Component} from 'react';
+import {Router, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { userActions } from '../actions/user.actions';
+import {register} from '../actions/index'
 
 
 
-class RegisterPage extends React.Component {
+
+class Registered extends Component {
     constructor(props) {
         super(props);
 
@@ -14,7 +15,9 @@ class RegisterPage extends React.Component {
                 firstName: '',
                 lastName: '',
                 username: '',
-                password: ''
+                password: '',
+                email: '',
+                location: ''
             },
             submitted: false
         };
@@ -41,11 +44,12 @@ class RegisterPage extends React.Component {
         const { user } = this.state;
         const { dispatch } = this.props;
         if (user.firstName && user.lastName && user.username && user.password) {
-            dispatch(userActions.register(user));
+            dispatch(register(user));
         }
     }
 
     render() {
+        console.log(this.props)
         const { registering  } = this.props;
         const { user, submitted } = this.state;
         return (
@@ -80,12 +84,35 @@ class RegisterPage extends React.Component {
                             <div className="help-block">Password is required</div>
                         }
                     </div>
+                    <div className={'form-group' + (submitted && !user.location ? ' has-error' : '')}>
+                        <label htmlFor="password">Location</label>
+                        <input type="location" className="form-control" name="location" value={user.location} onChange={this.handleChange} />
+                        {submitted && !user.location &&
+                            <div className="help-block">Location is required</div>
+                        }
+                    </div>
+                    <div className={'form-group' + (submitted && !user.email ? ' has-error' : '')}>
+                        <label htmlFor="password">Email</label>
+                        <input type="email" className="form-control" name="email" value={user.email} onChange={this.handleChange} />
+                        {submitted && !user.email &&
+                            <div className="help-block">Email is required</div>
+                        }
+                    </div>
                     <div className="form-group">
-                        <button className="btn btn-primary">Register</button>
+                        <button 
+                        className="btn btn-primary"
+                        type='submit'
+                        onClick={event => {
+                        event.preventDefault()
+                        this.props.register(user)
+                        }}>Register</button>
                         {registering && 
                             <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                         }
-                        <Link to="/login" className="btn btn-link">Cancel</Link>
+                      
+
+                        <a href="/login" className="btn btn-link">Cancel</a>
+                        
                     </div>
                 </form>
             </div>
@@ -93,13 +120,14 @@ class RegisterPage extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    console.log(state)
-    const { registrationReducer } = state.registrationReducer;
-    return {
-        registrationReducer
-    };
+const mapStateToProps = state => {
+    return{
+        user: [],
+        isRegistered: state.isRegistered
+    }
+
 }
 
-const connectedRegisterPage = connect(mapStateToProps)(RegisterPage);
-export { connectedRegisterPage as RegisterPage };
+
+export default connect (mapStateToProps, {register})(Registered)
+

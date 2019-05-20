@@ -7,8 +7,10 @@ import { history } from './helpers/history';
 import { alertActions } from './actions/alert.actions';
 import { PrivateRoute } from './Components/PrivateRoute';
 import Header from './Components/Header/Header';
- import { LoginPage } from './LoginPage/LoginPage';
-import { RegisterPage } from './RegisterPage/RegisterPage';
+ import  LoginPage  from './LoginPage/LoginPage';
+import  Registered  from './RegisterPage/Registered'
+import RecipeList from './Components/RecipeList';
+import Recipe from './Components/Recipe';
 
 class App extends React.Component {
     constructor(props) {
@@ -33,13 +35,16 @@ class App extends React.Component {
                         {
                             
                         }
-                        <Router history={history}>
-                            <div>
-                                { <PrivateRoute exact path="/" component={HomePage} /> }
-                                { <Route path="/login" component={LoginPage} /> }
-                                { <Route path="/register" component={RegisterPage} /> }
-                            </div>
-                        </Router>
+                       <Registered/>
+                       <LoginPage/>
+                       <RecipeList/>
+                       <Recipe/>
+                       <button
+                       type= 'submit'
+                       onClick= {e => {
+                        e.preventDefault()
+                    this.props.getAll(this.state)
+                    }}>Meet the Chefs</button>>
                     </div>
                 </div>
             </div>

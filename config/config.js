@@ -7,5 +7,6 @@ module.exports = {
         name: 'mush.js',            // Category name for logging
     },
 
-    server : { port : 4000 }
+    server : { port : 4000 },
+    apiUrl : 'https://foodie-portfolio.herokuapp.com'
 };
