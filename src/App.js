@@ -1,26 +1,63 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React from 'react';
+import { Router, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import {HomePage} from "./HomePage/HomePage";
+import { history } from './helpers/history';
+import { alertActions } from './actions/alert.actions';
+import { PrivateRoute } from './Components/PrivateRoute';
+import Header from './Components/Header/Header';
+ import  LoginPage  from './LoginPage/LoginPage';
+import  Registered  from './RegisterPage/Registered'
+import RecipeList from './Components/RecipeList';
+import Recipe from './Components/Recipe';
+
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+
+        const { dispatch } = this.props;
+        history.listen((location, action) => {
+            // clear alert on location change
+            dispatch(alertActions.clear());
+        });
+    }
+
+    render() {
+        const { alert } = this.props;
+        return (
+            <div className="jumbotron">
+                <div className="container">
+                <Header/>
+            
+             
+                    <div className="col-sm-8 col-sm-offset-2">
+                        {
+                            
+                        }
+                       <Registered/>
+                       <LoginPage/>
+                       <RecipeList/>
+                       <Recipe/>
+                       <button
+                       type= 'submit'
+                       onClick= {e => {
+                        e.preventDefault()
+                    this.props.getAll(this.state)
+                    }}>Meet the Chefs</button>>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }
 
-export default App;
+function mapStateToProps(state) {
+    const { alert } = state;
+    return {
+        alert
+    };
+}
+
+const connectedApp = connect(mapStateToProps)(App);
+export { connectedApp as App }; 
